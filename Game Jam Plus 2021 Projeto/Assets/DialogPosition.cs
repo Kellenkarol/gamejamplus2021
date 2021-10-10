@@ -9,10 +9,10 @@ public class DialogPosition : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("A");
         if (collision.CompareTag("Player"))
         {
             Event.OnDialogEvent(dialog);
+            gameObject.SetActive(false);
         }
     }
 }

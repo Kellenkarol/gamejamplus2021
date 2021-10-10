@@ -47,13 +47,13 @@ MonoBehaviour:
   dialog:
     phrases:
       array:
-      - personageDialog: {fileID: 11400000, guid: c9c8b7fbf3ae51a439c13049a898cef7, type: 2}
+      - personageDialog: {fileID: 11400000, guid: 44b65321f0aebed49a97819dad585511, type: 2}
         text: Aloka corre negada
         timecharactere: 0.5
-      - personageDialog: {fileID: 11400000, guid: c9c8b7fbf3ae51a439c13049a898cef7, type: 2}
+      - personageDialog: {fileID: 11400000, guid: a813d49ea310e3547b7a8dcdaa181f45, type: 2}
         text: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 150
         timecharactere: 0.5
-      - personageDialog: {fileID: 11400000, guid: c9c8b7fbf3ae51a439c13049a898cef7, type: 2}
+      - personageDialog: {fileID: 11400000, guid: fb810d69b7729c7469bd77f930b4463e, type: 2}
         text: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 150
         timecharactere: 0.5
       - personageDialog: {fileID: 11400000, guid: c9c8b7fbf3ae51a439c13049a898cef7, type: 2}
