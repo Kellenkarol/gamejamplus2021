@@ -13,13 +13,13 @@ public class DialogUI : MonoBehaviour
     {
         Event.DialogEvent += InitialConversation;
     }
-    public void InitialConversation (Dialog dialog)
+    public void InitialConversation (Dialog dialog,int dialogNumber)
     {
 
         _dialogSystem.SetActive(true);
-        StartCoroutine(ReadAllDialog(dialog));
+        StartCoroutine(ReadAllDialog(dialog,dialogNumber));
     }
-    IEnumerator ReadAllDialog(Dialog dialog)
+    IEnumerator ReadAllDialog(Dialog dialog,int dialogNumber)
     {
         Debug.Log(dialog.phrases.GetArrayLenght());
         for (int i = 0; i < dialog.phrases.GetArrayLenght(); i++)
@@ -31,6 +31,18 @@ public class DialogUI : MonoBehaviour
              text.text = "";
         }
         _dialogSystem.SetActive(false);
+        if (dialogNumber == 1)
+        {
+            Event.OnGainHabilidade(Habilidades.Habilidade.Pulo);
+        }
+        if (dialogNumber == 2)
+        {
+            Event.OnInitialBossBattle();
+        }
+        if (dialogNumber == 3)
+        {
+            Event.OnInitialBossBattle();
+        }
         yield return null;
     }
     IEnumerator ReadPhrase(Phrase phrase)

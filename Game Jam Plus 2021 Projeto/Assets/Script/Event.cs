@@ -4,11 +4,11 @@ using UnityEngine;
 using System;
 public class Event : MonoBehaviour
 {
-    public static event Action<Dialog> DialogEvent = delegate { };
+    public static event Action<Dialog,int> DialogEvent = delegate { };
 
-    public static void OnDialogEvent(Dialog dialog)
+    public static void OnDialogEvent(Dialog dialog,int dialogNumber)
     {
-        DialogEvent?.Invoke(dialog);
+        DialogEvent?.Invoke(dialog,dialogNumber);
     }
 
     public static event Action<int> PersonageTakeDamage = delegate { };
@@ -30,5 +30,19 @@ public class Event : MonoBehaviour
     public static void OnUIDefenseAmount(float value)
     {
         UIDefenseAmount?.Invoke(value);
+    }
+
+    public static event Action<Habilidades.Habilidade> GainHabilidade = delegate { };
+
+    public static void OnGainHabilidade(Habilidades.Habilidade habilidade)
+    {
+        GainHabilidade?.Invoke(habilidade);
+    }
+
+    public static event Action InitialBossBattle = delegate { };
+
+    public static void OnInitialBossBattle()
+    {
+        InitialBossBattle?.Invoke();
     }
 }
