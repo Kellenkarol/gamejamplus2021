@@ -16,7 +16,7 @@ public class ParallaxEffect : MonoBehaviour
         int childCount = transform.childCount;
         for(int c=0; c<childCount; c++)
         {
-            print(transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().material);
+            // print(transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().material);
             layers.Add(transform.GetChild(c).gameObject.GetComponent<SpriteRenderer>().material);
         }
 
