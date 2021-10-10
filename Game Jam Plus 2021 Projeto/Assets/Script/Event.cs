@@ -24,4 +24,11 @@ public class Event : MonoBehaviour
     {
         PersonageDie?.Invoke();
     }
+
+    public static event Action<float> UIDefenseAmount = delegate { };
+
+    public static void OnUIDefenseAmount(float value)
+    {
+        UIDefenseAmount?.Invoke(value);
+    }
 }

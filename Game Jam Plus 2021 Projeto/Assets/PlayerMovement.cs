@@ -15,6 +15,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]PlayerHability playerHability;
     [SerializeField]int lifePersonage=3;
     [SerializeField]bool personagemParado = false;
+    float timerHabilityDefense=3;
+    float maxTimerHabilityDefense=3;
+    public float TimerDefense
+    {
+        get { return timerHabilityDefense; }
+        set
+        {
+            timerHabilityDefense = value;
+            Event.OnUIDefenseAmount(CalculateFillAmount());
+            if (timerHabilityDefense <= 0)
+            {
+                animatorPersonagem.SetBool("Defense", false);
+                DesativarHabilidadeEscudo();
+            }
+            else
+            {
+                if(timerHabilityDefense>= maxTimerHabilityDefense)
+                {
+                    timerHabilityDefense = maxTimerHabilityDefense;
+                }
+            }
+        }
+    }
     public int Life
     {
         get { return lifePersonage; }
@@ -79,13 +102,20 @@ public class PlayerMovement : MonoBehaviour
             //Ativar habilidade
             animatorPersonagem.SetBool("Defense", true);
             AtivarHabilidadeEscudo();
+            TimerDefense -= Time.deltaTime;
         }
         if (Input.GetKeyUp(KeyCode.E)&& playerHability.PossuiHabilidade(Habilidades.Habilidade.Defesa))
         {
             //Ativar habilidade
             animatorPersonagem.SetBool("Defense", false);
             DesativarHabilidadeEscudo();
+            TimerDefense += Time.deltaTime;
         }
+
+        if(_isIvencibility)
+            TimerDefense -= Time.deltaTime;
+        else
+            TimerDefense += Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -137,5 +167,12 @@ public class PlayerMovement : MonoBehaviour
         animatorPersonagem.SetTrigger("Die");
         personagemParado = true;
         yield return new WaitForSeconds(1);
+    }
+
+    public float CalculateFillAmount()
+    {
+        float result = timerHabilityDefense/ maxTimerHabilityDefense;
+        result = Mathf.Clamp(result, 0,100);
+        return result;
     }
 }
