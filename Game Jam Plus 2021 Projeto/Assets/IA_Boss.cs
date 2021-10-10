@@ -31,19 +31,21 @@ public class IA_Boss : MonoBehaviour
                   currentWolfDelaySpawn, 
                   currentBallDelaySpawn, 
                   BallRainDelayBetweenBallAux;
+
+
+    public int maxWolfSameTime;
     
 
-    List<GameObject> wolfOn  = new List<GameObject>();
-    List<GameObject> wolfOff = new List<GameObject>();
+    private List<GameObject> wolfOn  = new List<GameObject>();
+    private List<GameObject> wolfOff = new List<GameObject>();
 
-    List<GameObject> ballOn  = new List<GameObject>();
-    List<GameObject> ballOff = new List<GameObject>();
+    private List<GameObject> ballOn  = new List<GameObject>();
+    private List<GameObject> ballOff = new List<GameObject>();
 
 
     int currentBallAttack = 0, BallRainCountAux;
     bool BallAttackChosen = false;
     float wolfCountAux, ballSpawnAux;
-
 
 
     // Start is called before the first frame update
@@ -65,10 +67,17 @@ public class IA_Boss : MonoBehaviour
             currentWolfDelaySpawn = WolfDelaySpawn + Random.Range(0, WolfDelaySpawnVariance);
 
 
-            GameObject _wolf = CreateWolf();
-            _wolf.transform.position = new Vector3(Random.Range(limiteLeft.position.x, limiteRight.position.x), 
-                                                   SpawnPoint_X.position.y,
-                                                   SpawnPoint_X.position.z);
+            // spawn somente se quantidade de lobos inferior ao limite máximo
+            if(wolfOn.Count < maxWolfSameTime)
+            {
+                GameObject _wolf = CreateWolf();
+                _wolf.transform.position = new Vector3(Random.Range(limiteLeft.position.x, limiteRight.position.x), 
+                                                       SpawnPoint_X.position.y,
+                                                       SpawnPoint_X.position.z);
+
+            }
+
+
         }
 
 
@@ -124,39 +133,6 @@ public class IA_Boss : MonoBehaviour
 
         }
 
-
-
-
-
-
-
-        // wolfSpawnAux += Time.deltaTime;
-        // ballSpawnAux += Time.deltaTime;
-
-        // // aqui inicia o spawn dos lobinhos
-        // if(wolfSpawnAux >= WolfDelayWave )
-        // {
-        //     wolfSpawnAux2 += Time.deltaTime;
-        //     if(wolfSpawnAux2 >= WolfDelayBetweenWolf)
-        //     {
-        //         wolfSpawnAux2 = 0;
-        //         wolfCountAux++;
-        //         if(wolfCountAux <= WolfCount)
-        //         {
-        //             GameObject _wolf = Instantiate(Wolf) as GameObject;
-        //             _wolf.transform.position = wolfSpawnPoint.position;
-        //         }
-        //         else
-        //         {
-        //             wolfSpawnAux = 0;
-        //         }
-        //     }
-        // }
-        // else
-        // {
-        //     wolfCountAux = 0;
-        //     wolfSpawnAux2 = 0;
-        // }
     }
 
 
@@ -174,10 +150,27 @@ public class IA_Boss : MonoBehaviour
         else
         {
             wolfTmp = Instantiate(Wolf) as GameObject;
+            wolfTmp.GetComponent<AI_Enemy>()._isOnBoss = true;
+            wolfTmp.GetComponent<AI_Enemy>().bossScript = this;
             wolfOn.Add(wolfTmp);
         }
 
         return wolfTmp;
+    }
+
+
+    public void RemoveWolf(GameObject obj)
+    {
+        GameObject wolfTmp;
+        if(wolfOn.Contains(obj))
+        {
+            int idx = wolfOn.IndexOf(obj);
+            wolfTmp = wolfOn[idx];
+            wolfOn.Remove(wolfTmp);
+            wolfTmp.SetActive(false);
+            wolfOff.Add(wolfTmp);
+        }
+
     }
 
 
@@ -202,6 +195,21 @@ public class IA_Boss : MonoBehaviour
     }
 
 
+    public void RemoveBallRain(GameObject obj)
+    {
+        GameObject ballTmp;
+        if(ballOn.Contains(obj))
+        {
+            int idx = ballOn.IndexOf(obj);
+            ballTmp = ballOn[idx];
+            ballOn.Remove(ballTmp);
+            ballTmp.SetActive(false);
+            ballOff.Add(ballTmp);
+        }
+
+    }
+
+
     public static bool IsInside(Collider2D c, Vector3 point)
     {
         Vector2 dir = point - c.transform.position;
@@ -211,4 +219,6 @@ public class IA_Boss : MonoBehaviour
         // Because closest=point if point is inside - not clear from docs I feel
         return closest == hit.point;
     }
+
+
 }
