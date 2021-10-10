@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8abe1681e3e83ec48b3ac1f5bb52bddb
+guid: df6aa5c1f94f38340980b8f4ff3720a4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6153575943623442863
-    second: menu-08_0
+      213: 2736450513978873831
+    second: fundo Cofig-01_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -106,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: menu-08_0
+      name: fundo Cofig-01_0
       rect:
         serializedVersion: 2
-        x: 620
-        y: 123
-        width: 1951
-        height: 768
+        x: 644
+        y: 421
+        width: 2542
+        height: 1021
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,8 +120,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15e7fe5484b1a9aa0800000000000000
-      internalID: -6153575943623442863
+      spriteID: 7e7552f7e33d9f520800000000000000
+      internalID: 2736450513978873831
       vertices: []
       indices: 
       edges: []

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 10cf5e45506b93d4ea614bd345984b2d
+guid: f46ff496703a59142842a6936f9323b6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1180922096303572920
-    second: "bot\xF5es-10_0"
+      213: -5003677291581055927
+    second: "bot\xF5es-01_0"
   - first:
-      213: 1827564536038103274
-    second: "bot\xF5es-10_2"
+      213: 6145412782274542530
+    second: "bot\xF5es-01_1"
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "bot\xF5es-10_0"
+      name: "bot\xF5es-01_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 800
-        height: 1012
+        x: 25
+        y: 703
+        width: 893
+        height: 700
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,20 +123,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8487a663c958c9fe0800000000000000
-      internalID: -1180922096303572920
+      spriteID: 94c5f90930e5f8ab0800000000000000
+      internalID: -5003677291581055927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "bot\xF5es-10_2"
+      name: "bot\xF5es-01_1"
       rect:
         serializedVersion: 2
-        x: 2502
-        y: 0
-        width: 800
-        height: 1012
+        x: 25
+        y: 3
+        width: 893
+        height: 700
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,8 +144,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae817ae3340dc5910800000000000000
-      internalID: 1827564536038103274
+      spriteID: 2cb7e9d9d54e84550800000000000000
+      internalID: 6145412782274542530
       vertices: []
       indices: 
       edges: []
