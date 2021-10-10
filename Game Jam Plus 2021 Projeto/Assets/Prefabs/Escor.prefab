@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8223208836964962238}
   - component: {fileID: 8223208836964962239}
   - component: {fileID: 8223208836964962234}
+  - component: {fileID: -6368675841522707586}
   m_Layer: 0
   m_Name: Escor
   m_TagString: Player
@@ -106,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 81139361c7a27764084ad8a22464a5df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 47d33eef697dcdf45856c7080ff985ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -179,6 +180,8 @@ MonoBehaviour:
   animatorPersonagem: {fileID: 8223208836964962238}
   GroundCheck: {fileID: 8223208835222812088}
   _isFloor: 0
+  _isIvencibility: 0
+  playerHability: {fileID: -6368675841522707586}
 --- !u!50 &8223208836964962234
 Rigidbody2D:
   serializedVersion: 4
@@ -200,3 +203,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-6368675841522707586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223208836964962236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1354421a9cf774b49b64625dbc1fc198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  habilidadesPersonagem:
+    array: []
+    arrayCicle: 0
