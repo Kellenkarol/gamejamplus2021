@@ -15,6 +15,8 @@ public class AI_Enemy : MonoBehaviour
 
     [HideInInspector]
     public bool _isOnBoss;
+    [HideInInspector]
+    public IA_Boss bossScript;
 
     [SerializeField]
     private float movementSpeed, attackDistance, attackSpeed, attackDelay, standByMovementDistance;
@@ -279,6 +281,24 @@ public class AI_Enemy : MonoBehaviour
         RaycastHit2D hit2 = Physics2D.Raycast(hit.point+(Vector2.up*maxJumpHeight), -Vector2.up, Mathf.Infinity, LayerMask.GetMask("Floor"));
 
         return CalculateDistance(hit.point, hit2.point);
+    }
+
+
+    public void StartDeathAnimation()
+    {
+        // deve chamar quando for matar o lobo, ela é o ponto inicial
+
+    }
+
+
+    public void KillMe()
+    {
+        // deve ser chamada no final da animação de morte
+
+        if(!_isOnBoss)
+        {
+
+        }
     }
 
 }
