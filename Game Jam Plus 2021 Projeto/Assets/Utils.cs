@@ -117,11 +117,9 @@ namespace Utils
     public class Array<T> {
         [SerializeField] T[] array;
         [SerializeField] bool arrayCicle;
-        [SerializeField] int lenghtArray;
         public Array(int _lenght, bool _arrayCicle=false){
             this.array = new T[_lenght];
             this.arrayCicle = _arrayCicle;
-            this.lenghtArray = _lenght;
         }
         public T ChangeNextElement(ref int position)
         {
@@ -155,7 +153,7 @@ namespace Utils
 
         public void AddElementPosition(T element,int position)
         {
-            if(position>=0 && position < lenghtArray)
+            if(position>=0 && position < array.Length)
             {
                 array[position] = element;
             }
@@ -167,7 +165,7 @@ namespace Utils
 
         public void RemoveElementPosition(int position)
         {
-            if (position >= 0 && position < lenghtArray)
+            if (position >= 0 && position < array.Length)
             {
                 array[position] = default(T);
             }
@@ -178,7 +176,7 @@ namespace Utils
         }
         public int GetArrayLenght()
         {
-            return lenghtArray;
+            return array.Length;
         }
 
         public bool GetArrayCicle()
