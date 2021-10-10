@@ -13,8 +13,8 @@ using UnityEngine;
 public class AI_Enemy : MonoBehaviour
 {
 
-    [HideInInspector]
-    public bool _isOnBoss;
+    // [HideInInspector]
+    public bool _isOnBoss=false;
     [HideInInspector]
     public IA_Boss bossScript;
 
@@ -50,6 +50,7 @@ public class AI_Enemy : MonoBehaviour
                 movementDistance = (int)(standByMovementDistance/2);
             // movementDistance=0;
             isMov =true;
+            print("Sem boss");
         }
         else
         {
@@ -98,7 +99,7 @@ public class AI_Enemy : MonoBehaviour
 
     void Jump()
     {
-        _rbPersonagem.AddForce(new Vector2(0, 300));
+        _rbPersonagem.AddForce(new Vector2(0, 400));
     }
 
 
