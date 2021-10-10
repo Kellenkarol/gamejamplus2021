@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animatorPersonagem.SetInteger("MoveVelocity", 1);
-            transform.localScale = new Vector3(_moveX,1,1);
+            transform.localScale = new Vector3(_moveX*0.2f,0.2f,0.2f);
         }
         _isFloor = Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Floor"));
 
@@ -56,6 +56,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void ExecuteJump()
     {
-        _rbPersonagem.AddForce(new Vector2(0, 1500));
+        _rbPersonagem.AddForce(new Vector2(0, 400));
     }
 }
