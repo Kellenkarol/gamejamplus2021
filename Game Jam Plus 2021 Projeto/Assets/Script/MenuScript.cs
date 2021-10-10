@@ -9,7 +9,7 @@ public class MenuScript : MonoBehaviour
     public Array<GameObject> telas;
     public void BTN_Play()
     {
-        SceneManager.LoadScene("IA");
+        SceneManager.LoadScene("Cena 1");
     }
     public void BTN_Settings()
     {
