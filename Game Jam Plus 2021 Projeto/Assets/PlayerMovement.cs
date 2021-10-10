@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]Rigidbody2D _rbPersonagem;
-    int _personVelocityMax = 700;
+    int _personVelocityMax = 400;
     float _velocityX=0;
     [SerializeField]float _moveX;
     [SerializeField] Animator animatorPersonagem;
@@ -44,11 +44,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_velocityX < _personVelocityMax)
         {
-            _velocityX += 550 * Time.deltaTime;
+            _velocityX += 300 * Time.deltaTime;
         }
         else
         {
-            _velocityX = 700;
+            _velocityX = _personVelocityMax;
         }
         _rbPersonagem.velocity = new Vector2(_moveX * _velocityX * Time.deltaTime, _rbPersonagem.velocity.y);
 
