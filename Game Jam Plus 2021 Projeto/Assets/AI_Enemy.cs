@@ -12,6 +12,9 @@ using UnityEngine;
 
 public class AI_Enemy : MonoBehaviour
 {
+
+    public bool _isOnBoss;
+
     [SerializeField]
     private float movementSpeed, attackDistance, attackSpeed, attackDelay, standByMovementDistance;
     [SerializeField]
@@ -24,32 +27,61 @@ public class AI_Enemy : MonoBehaviour
     float movementDistance, currentMovementDistance, distanceOfPlayer, attackDelayAux;
     bool standBy, isLeft, isAttacking, attackIn, jumping, isMov;
 
+    float _velocityX;
+    public Rigidbody2D _rbPersonagem;
     // Start is called before the first frame update
     void Start()
     {
+        if(!_isOnBoss)
+        {
         standBy = true;
         if(standBy)
             movementDistance = (int)(standByMovementDistance/2);
         // movementDistance=0;
         isMov =true;
+        }
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!_isOnBoss)
+        {
+            if(isMov)
+            {
+                attackDelayAux = 0;
+                Move();
+            }
+            if(isAttacking)
+            {
+                attackDelayAux += Time.deltaTime;
+                if(attackDelayAux >= attackDelay)
+                    Attack();
+            }
+        }
 
-        if(isMov)
+    }
+
+    private void FixedUpdate()
+    {
+        if(_isOnBoss)
         {
-            attackDelayAux = 0;
-            Move();
+
+            // if (_velocityX < _personVelocityMax)
+            // {
+            //     _velocityX += 550 * Time.deltaTime;
+            // }
+            // else
+            // {
+                _velocityX = 300;
+            // }
+
+
+            _rbPersonagem.velocity = new Vector2(-1 * _velocityX * Time.deltaTime, _rbPersonagem.velocity.y);
+
         }
-        if(isAttacking)
-        {
-            attackDelayAux += Time.deltaTime;
-            if(attackDelayAux >= attackDelay)
-                Attack();
-        }
-        
 
     }
 
