@@ -13,87 +13,119 @@ using UnityEngine;
 public class AI_Enemy : MonoBehaviour
 {
 
+    [HideInInspector]
     public bool _isOnBoss;
 
     [SerializeField]
     private float movementSpeed, attackDistance, attackSpeed, attackDelay, standByMovementDistance;
     [SerializeField]
     private Vector2 visionDistance;
+    [SerializeField] Transform GroundCheck;
 
-    public Transform Player;
+    private Transform Player;
     // public bool isOnPlataform;
 
     Vector3 playerDistance;
     float movementDistance, currentMovementDistance, distanceOfPlayer, attackDelayAux;
-    bool standBy, isLeft, isAttacking, attackIn, jumping, isMov;
+    bool standBy, isLeft, isAttacking, attackIn, jumping, isMov, follow, _isFloor;
 
     float _velocityX;
-    public Rigidbody2D _rbPersonagem;
+    private Rigidbody2D _rbPersonagem;
+    public float maxJumpHeight;
+    public Transform pe;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        // _isOnBoss = false;
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        _rbPersonagem = GetComponent<Rigidbody2D>();
         if(!_isOnBoss)
         {
-        standBy = true;
-        if(standBy)
-            movementDistance = (int)(standByMovementDistance/2);
-        // movementDistance=0;
-        isMov =true;
+            standBy = true;
+            if(standBy)
+                movementDistance = (int)(standByMovementDistance/2);
+            // movementDistance=0;
+            isMov =true;
+        }
+        else
+        {
+            follow = true;
         }
 
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(!_isOnBoss)
+
+        _isFloor = Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Floor"));
+        print("_isFloor:     "+_isFloor);
+
+        if(isMov)
         {
-            if(isMov)
-            {
-                attackDelayAux = 0;
-                Move();
-            }
-            if(isAttacking)
-            {
-                attackDelayAux += Time.deltaTime;
-                if(attackDelayAux >= attackDelay)
-                    Attack();
-            }
+            attackDelayAux = 0;
+            print("Move");
+            Move();
         }
 
-    }
-
-    private void FixedUpdate()
-    {
-        if(_isOnBoss)
+        if(isAttacking)
         {
-
-            // if (_velocityX < _personVelocityMax)
-            // {
-            //     _velocityX += 550 * Time.deltaTime;
-            // }
-            // else
-            // {
-                _velocityX = 300;
-            // }
-
-
-            _rbPersonagem.velocity = new Vector2(-1 * _velocityX * Time.deltaTime, _rbPersonagem.velocity.y);
-
+            attackDelayAux += Time.deltaTime;
+            if(attackDelayAux >= attackDelay)
+                print("Attack");
+                Attack();
+        }
+        else if(follow)
+        {
+            print("Follow");
+            FollowPlayer();
         }
 
+        if(GetDistanceOfLeftOrRight(isLeft) < 1 && GetHeightOfLeftOrRight(isLeft) < maxJumpHeight && _isFloor)
+        {
+            // jumping = true;
+            Jump();
+            print("Jump");
+        }
+        // print("GetHeightOfLeftOrRight:       "+GetHeightOfLeftOrRight(isLeft));
     }
+
 
     void Jump()
     {
+        _rbPersonagem.AddForce(new Vector2(0, 300));
+    }
 
+
+    private void FollowPlayer()
+    {
+        Vector3 dir = Player.position - transform.position;
+        float dirX = dir.x > 0 ? 1 : -1;
+
+        isLeft = dirX == -1? true : false;
+
+        transform.position += transform.right * dirX * Time.deltaTime * movementSpeed;
+
+        playerDistance = GetDistance(transform.position, Player.position);
+
+        // ataque        
+        if(IsInRangeAttack() && _isFloor)
+        {
+            distanceOfPlayer = GetDistanceOfPlayer();
+            movementDistance = 0;
+            attackIn = true;
+            isAttacking = true;
+            isMov = false;
+        }
     }
 
 
     bool IsInRangeAttack()
     {
-        return Mathf.Abs(playerDistance.x) <= attackDistance && Mathf.Abs(playerDistance.y) <= 0.3;
+        return Mathf.Abs(playerDistance.x) <= attackDistance && Mathf.Abs(playerDistance.y) <= 1;
     }
 
 
@@ -178,7 +210,7 @@ public class AI_Enemy : MonoBehaviour
 
 
         // ataque        
-        if(IsInRangeAttack())
+        if(IsInRangeAttack() && _isFloor)
         {
             distanceOfPlayer = GetDistanceOfPlayer();
             movementDistance = 0;
@@ -231,8 +263,22 @@ public class AI_Enemy : MonoBehaviour
     float GetDistanceOfLeftOrRight(bool _isleft)
     {
         Vector2 dir = _isleft ? -Vector2.right:Vector2.right;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, Mathf.Infinity, LayerMask.GetMask("Collisor"));
-        return CalculateDistance(transform.position, hit.point);
+        RaycastHit2D hit = Physics2D.Raycast(pe.position, dir, Mathf.Infinity, LayerMask.GetMask("Floor"));
+
+        dir = pe.position - (Vector3)hit.point;
+        RaycastHit2D hit2 = Physics2D.Raycast(hit.point, dir, Mathf.Infinity, LayerMask.GetMask("Enemie"));
+
+        return CalculateDistance(hit.point, hit2.point);
+    }
+
+
+    float GetHeightOfLeftOrRight(bool _isleft)
+    {
+        Vector2 dir = _isleft ? -Vector2.right:Vector2.right;
+        RaycastHit2D hit = Physics2D.Raycast(pe.position, dir, Mathf.Infinity, LayerMask.GetMask("Floor"));
+        RaycastHit2D hit2 = Physics2D.Raycast(hit.point+(Vector2.up*maxJumpHeight), -Vector2.up, Mathf.Infinity, LayerMask.GetMask("Floor"));
+
+        return CalculateDistance(hit.point, hit2.point);
     }
 
 }

@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ball: {fileID: 5484310068137014156, guid: 0480ee65e4fd0164394b349446346958, type: 3}
-  Wolf: {fileID: 5958187586586805426, guid: 50616b934f661cf40862ea71da36a15f, type: 3}
+  Wolf: {fileID: 8270559928285650581, guid: 57e7c6dab5a9d174e8ed52fee385632c, type: 3}
   SpawnPoint_X: {fileID: 1403366468}
   SpawnPoint_Y: {fileID: 178466433}
   limiteLeft: {fileID: 381685345}
@@ -1069,7 +1069,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8223208837289905002
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1199,7 +1199,7 @@ GameObject:
   - component: {fileID: 8223208837289905001}
   m_Layer: 6
   m_Name: Escor
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

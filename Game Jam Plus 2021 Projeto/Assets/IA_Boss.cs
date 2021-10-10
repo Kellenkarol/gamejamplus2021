@@ -169,6 +169,7 @@ public class IA_Boss : MonoBehaviour
             wolfOff.RemoveAt(0);
 
             wolfTmp.SetActive(true);
+            wolfTmp.GetComponent<AI_Enemy>()._isOnBoss = true;
             wolfOn.Add(wolfTmp);
         }
         else
