@@ -233,7 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3d06365b5675647a8217e8618ab4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isOnBoss: 1
+  _isOnBoss: 0
+  bossScript: {fileID: 0}
   movementSpeed: 2
   attackDistance: 1.8
   attackSpeed: 6
