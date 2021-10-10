@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 739382b1f530bd14f8bcf9df09b425e8, type: 3}
-  m_Name: Kuro
+  m_Name: MestreAo
   m_EditorClassIdentifier: 
-  bgImage: {fileID: 21300000, guid: dcd742a3d713440429e28167c7750b92, type: 3}
-  personageImage: {fileID: 21300000, guid: e909225a04f7af843bfacbb6aa1c964f, type: 3}
+  bgImage: {fileID: 21300000, guid: 3ed882273d70e8648ae889a83df69d33, type: 3}
+  personageImage: {fileID: 21300000, guid: faf79bbf0a829314bbbe17af5e0ad83b, type: 3}
