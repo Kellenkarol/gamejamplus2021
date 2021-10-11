@@ -153,7 +153,7 @@ namespace Utils
 
         public void AddElementPosition(T element,int position)
         {
-            if(position>=0 && position < array.Length)
+            if(position>=0 && position <= array.Length)
             {
                 array[position] = element;
             }

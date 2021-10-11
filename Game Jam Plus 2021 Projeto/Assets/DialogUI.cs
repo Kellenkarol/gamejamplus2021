@@ -27,7 +27,7 @@ public class DialogUI : MonoBehaviour
             imagePerson.sprite = dialog.phrases.GetElement(i).personageDialog.personageImage;
             BGPerson.sprite = dialog.phrases.GetElement(i).personageDialog.bgImage;
             yield return StartCoroutine(ReadPhrase(dialog.phrases.GetElement(i)));
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
              text.text = "";
         }
         _dialogSystem.SetActive(false);

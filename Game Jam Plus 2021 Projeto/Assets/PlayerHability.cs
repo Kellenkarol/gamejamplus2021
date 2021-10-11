@@ -9,6 +9,7 @@ public class PlayerHability : MonoBehaviour
     private void Start()
     {
         Event.GainHabilidade += GainHabil;
+        habilidadesPersonagem = new Array<Habilidades.Habilidade>(2);
     }
     // Start is called before the first frame update
     public bool PossuiHabilidade(Habilidades.Habilidade habilUsada)
@@ -37,6 +38,6 @@ public class PlayerHability : MonoBehaviour
 [System.Serializable]
 public class Habilidades
 {
-    public enum Habilidade { Pulo,Defesa}
+    public enum Habilidade { None,Pulo,Defesa}
     public Habilidade habilidade;
 }

@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void ExecuteJump()
     {
-        _rbPersonagem.AddForce(new Vector2(0, 800));
+        _rbPersonagem.AddForce(new Vector2(0, 550));
     }
 
     void AtivarHabilidadeEscudo()

@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
     public void ChangeSFXStatus(bool status)
     {
         if(status)
-        audioMixer.SetFloat("sfxVolume",0);
+        audioMixer.SetFloat("sfxVolume",-20);
         else
             audioMixer.SetFloat("sfxVolume", -80);
     }
@@ -36,7 +36,7 @@ public class AudioManager : MonoBehaviour
     public void ChangeMusicStatus(bool status)
     {
         if (status)
-            audioMixer.SetFloat("musicVolume", -15);
+            audioMixer.SetFloat("musicVolume", -35);
         else
             audioMixer.SetFloat("musicVolume", -80);
     }
