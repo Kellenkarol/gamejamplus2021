@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParallaxEffect : MonoBehaviour
 {
-    [Range(1f,5f)]
+    [Range(1f,10f)]
     public float movementSpeed;
     private List<Material> layers = new List<Material>();
 
@@ -24,7 +24,7 @@ public class ParallaxEffect : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         MoveParallax();
     }
